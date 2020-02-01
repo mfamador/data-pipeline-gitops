@@ -1,0 +1,19 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-dns
+  namespace: cert-manager
+spec:
+  acme:
+    email: cloud@veniam.com
+    solvers:
+    - dns01:
+        route53:
+          region: eu-west-1
+          accessKeyID: BKIAZQL4YFKYTMDM74XA
+          secretAccessKeySecretRef:
+            name: letsencrypt-route53-secret-key
+            key: route53_certbot_secret_key
+    privateKeySecretRef:
+      name: letsencrypt-dns
+    server: https://acme-v02.api.letsencrypt.org/directory

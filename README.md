@@ -96,6 +96,12 @@ brew install kubectx (installs both kubectx and kubens)
 curl -H "host:echo.domain.com" http://localhost:8080/
 ```
 
+or if you added echo.domain.com to /etc/hosts
+```
+curl http://echo.domain.com:8080
+```
+
+
 ## Monitoring
 
 ### Prometheus
@@ -118,11 +124,15 @@ echo <ADMIN-PASSWORD> | base64 --decode
 ```
 
 ```
-kubectl port-forward svc/prometheus-operator-grafana -n monitoring 8080:80
+kubectl port-forward svc/prometheus-operator-grafana -n monitoring 8880:80
 ```
 
 ```
-open http://localhost:8080
+open http://localhost:8880
+```
+or using the ingress if you added grafana.domain.com to /etc/hosts
+```
+open http://grafana.domain.com:8080
 ```
 
 ## Logging
@@ -155,8 +165,13 @@ kubectl port-forward svc/elasticsearch-master -n logging 9200:9200
 
 > curl localhost:9200/_cat/indices/
 green open foo-far-2020.02.01
+
 ```
 
+or using the ingress if you added elasticsearch.domain.com to /etc/hosts
+```
+curl http://elasticsearch.domain.com:8080
+```
 
 ### Kibana
 
@@ -168,7 +183,12 @@ kubectl port-forward svc/kibana-kibana -n logging 8088:5601
 open http://localhost:8088
 ```
 
-Create index patterns.
+or using the ingress if you added kibana.domain.com to /etc/hosts
+```
+open http://kibana.domain.com:8080
+```
+
+Create some index patterns on Kinana. Los should be already showing up.
 
 
 ## Message Broker
@@ -178,8 +198,7 @@ Create index patterns.
 ### Metrics
 
     Kafka Minion
-    
-  
+      
 
 ## Data Pipeline
 

@@ -1,0 +1,19 @@
+## IMPORTANT: you MUST install the cert-manager CRDs **before** installing the cert-manager Helm chart
+## Ref: https://github.com/jetstack/cert-manager/tree/master/deploy/charts/cert-manager
+## kubectl apply -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.13/deploy/manifests/00-crds.yaml
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: cert-manager
+  namespace: cert-manager
+  annotations:
+    flux.weave.works/automated: "false"
+spec:
+  releaseName: cert-manager
+  chart:
+    repository: https://charts.jetstack.io
+    name: cert-manager
+    version: 0.13.0
+  values:
+    webhook:
+      enabled: false
