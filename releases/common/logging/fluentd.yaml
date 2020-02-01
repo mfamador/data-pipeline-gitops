@@ -14,8 +14,8 @@ spec:
     version: 2.3.2
   values:
     output:
-      host: elasticsearch
-      port: 80
+      host: elasticsearch-master
+      port: 9200
     plugins:
       enabled: true
       pluginsList:

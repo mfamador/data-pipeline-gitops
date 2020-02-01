@@ -13,5 +13,5 @@ spec:
     name: kibana
     version: 7.5.2
   values:
-    elasticsearchHosts: "http://elasticsearch"
+    elasticsearchHosts: "http://elasticsearch-master:9200"
 

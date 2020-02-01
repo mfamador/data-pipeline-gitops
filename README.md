@@ -85,9 +85,10 @@ fluxcd/helm-operator
 
 ### Monitor cluster
 
-A really nice tools to monitor our workloads running on k8s
+A really useful tools to monitor our workloads running on k8s
 ```
 brew install derailed/k9s/k9s
+brew install kubectx (installs both kubectx and kubens)
 ```
 
 ### Test
