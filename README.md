@@ -16,6 +16,11 @@ k3d create --publish 8080:80 --workers 8
 export KUBECONFIG="$(k3d get-kubeconfig --name='k3s-default')"
 ```
 
+If you need to add additional nodes:
+```
+k3d add-node
+```
+
 ## Install Helm
 
 ```
