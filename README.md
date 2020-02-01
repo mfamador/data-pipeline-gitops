@@ -12,7 +12,7 @@ brew install k3d
 
 Create a k8s cluster with 6 worker nodes and expose 8080 for Traefik ingress controller
 ```
-k3d create --publish 8080:80 --workers 6
+k3d create --publish 8080:80 --workers 8
 export KUBECONFIG="$(k3d get-kubeconfig --name='k3s-default')"
 ```
 
