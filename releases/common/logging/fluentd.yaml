@@ -1,0 +1,177 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: fluentd
+  namespace: logging
+  annotations:
+    flux.weave.works/automated: "true"
+    flux.weave.works/tag.chart-image: semver:~2.3
+spec:
+  releaseName: fluent
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com/
+    name: fluentd
+    version: 2.3.2
+  values:
+    output:
+      host: elasticsearch
+      port: 80
+    plugins:
+      enabled: true
+      pluginsList:
+      - elasticsearch
+    service:
+      ports:
+      - name: "monitor-agent"
+        protocol: TCP
+        containerPort: 24220
+      - name: "forward"
+        protocol: TCP
+        containerPort: 24224
+    extraEnvVars:
+    - name: FLUENT_ELASTICSEARCH_RELOAD_CONNECTIONS
+      value: "false"
+    - name: FLUENT_ELASTICSEARCH_RECONNECT_ON_ERROR
+      value: "true"
+    - name: FLUENT_ELASTICSEARCH_RELOAD_ON_FAILURE
+      value: "true"
+    configMaps:
+      output.conf: |
+        <match kube.var.log.containers.helm*.log>
+          @type null
+        </match>
+        <match kube.var.log.containers.fluent*.log>
+          @type null
+        </match>
+        <match kube.var.log.containers.flux*.log>
+          @type null
+        </match>
+        <match kube.var.log.containers.prometheus*.log>
+          @type null
+        </match>
+        <match kube.var.log.containers.metrics*.log>
+          @type null
+        </match>
+        <match kube.var.log.containers.weave-net*.log>
+          @type null
+        </match>
+        <match kube.var.log.containers.soubrette*.log>
+          @type null
+        </match>
+        <match kube.var.log.containers.grafana*.log>
+          @type null
+        </match>
+        <match kube.var.log.containers.echo*.log>
+          @type null
+        </match>
+        <match kube.var.log.containers.cainjector*.log>
+          @type null
+        </match>
+        <match kube.var.log.containers.elasticsearch*.log>
+          @type null
+        </match>
+        <match kube.var.log.containers.alertmanager*.log>
+          @type null
+        </match>
+        <match kube.var.log.containers.concourse*.log>
+          @type null
+        </match>
+        <match kube.var.log.containers.postgresql*.log>
+          @type null
+        </match>
+        <match kube.var.log.containers.verdaccio*.log>
+          @type null
+        </match>
+        <match kube.var.log.containers.cert-manager*.log>
+          @type null
+        </match>
+
+        <match kube.var.log.containers.benthos*.log>
+          @id elasticsearch_dynamic_benthos
+          @type elasticsearch_dynamic
+          @log_level error
+          include_tag_key true
+          host "#{ENV['OUTPUT_HOST']}"
+          port "#{ENV['OUTPUT_PORT']}"
+          scheme "#{ENV['OUTPUT_SCHEME']}"
+          ssl_version "#{ENV['OUTPUT_SSL_VERSION']}"
+          logstash_format true
+          logstash_prefix benthos
+          reconnect_on_error true # defaults to false
+          reload_on_failure true # defaults to false
+          reload_connections false # defaults to true
+          resurrect_after 10s # defaults to 60s
+          <buffer>
+            @type file
+            path /var/log/fluentd-buffers/kubernetes.system.buffer.benthos
+            flush_mode interval
+            retry_type exponential_backoff
+            flush_thread_count 2
+            flush_interval 5s
+            retry_forever
+            retry_max_interval 30
+            chunk_limit_size "#{ENV['OUTPUT_BUFFER_CHUNK_LIMIT']}"
+            queue_limit_length "#{ENV['OUTPUT_BUFFER_QUEUE_LIMIT']}"
+            overflow_action block
+          </buffer>
+        </match>
+
+        <match kube.var.log.containers.*.log>
+          @id elasticsearch_dynamic_apis
+          @type elasticsearch_dynamic
+          @log_level error
+          include_tag_key true
+          host "#{ENV['OUTPUT_HOST']}"
+          port "#{ENV['OUTPUT_PORT']}"
+          scheme "#{ENV['OUTPUT_SCHEME']}"
+          ssl_version "#{ENV['OUTPUT_SSL_VERSION']}"
+          logstash_format true
+          logstash_prefix ${record.dig("kubernetes", "labels", "app") == nil ? 'kube' : record["kubernetes"]["labels"]["app"].to_s.downcase}
+          reconnect_on_error true # defaults to false
+          reload_on_failure true # defaults to false
+          reload_connections false # defaults to true
+          resurrect_after 10s # defaults to 60s
+          <buffer>
+            @type file
+            path /var/log/fluentd-buffers/kubernetes.system.buffer.app
+            flush_mode interval
+            retry_type exponential_backoff
+            flush_thread_count 2
+            flush_interval 5s
+            retry_forever
+            retry_max_interval 30
+            chunk_limit_size "#{ENV['OUTPUT_BUFFER_CHUNK_LIMIT']}"
+            queue_limit_length "#{ENV['OUTPUT_BUFFER_QUEUE_LIMIT']}"
+            overflow_action block
+          </buffer>
+        </match>
+
+        <match **>
+          @id elasticsearch
+          @type elasticsearch
+          @log_level error
+          include_tag_key true
+          host "#{ENV['OUTPUT_HOST']}"
+          port "#{ENV['OUTPUT_PORT']}"
+          scheme "#{ENV['OUTPUT_SCHEME']}"
+          ssl_version "#{ENV['OUTPUT_SSL_VERSION']}"
+          logstash_format true
+          logstash_prefix logstash
+          reconnect_on_error true # defaults to false
+          reload_on_failure true # defaults to false
+          reload_connections false # defaults to true
+          resurrect_after 10s # defaults to 60s
+          <buffer>
+            @type file
+            path /var/log/fluentd-buffers/kubernetes.system.buffer
+            flush_mode interval
+            retry_type exponential_backoff
+            flush_thread_count 2
+            flush_interval 5s
+            retry_forever
+            retry_max_interval 30
+            chunk_limit_size "#{ENV['OUTPUT_BUFFER_CHUNK_LIMIT']}"
+            queue_limit_length "#{ENV['OUTPUT_BUFFER_QUEUE_LIMIT']}"
+            overflow_action block
+          </buffer>
+        </match>
