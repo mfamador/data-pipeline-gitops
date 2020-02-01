@@ -7,7 +7,7 @@ A GitOps repository for an auto-scalable data pipeline
 
 Install k3d
 ```
-brea install k3d
+brew install k3d
 ```
 
 Create a k8s cluster with 2 node and expose 8080 for Traefik ingress controller
@@ -38,7 +38,6 @@ helm repo add fluxcd https://charts.fluxcd.io
 ```
 kubectl apply -f https://raw.githubusercontent.com/fluxcd/helm-operator/master/deploy/flux-helm-release-crd.yaml
 ```
-
 
 ### Install Flux
 ```
@@ -126,7 +125,9 @@ kubectl port-forward svc/prometheus-operator-grafana -n monitoring 8080:80
 open http://localhost:8080
 ```
 
-## Elasticsearch
+## Logging
+
+### Elasticsearch
 
 ```
 kubectl port-forward svc/elasticsearch-master -n logging 9200:9200
@@ -153,14 +154,11 @@ kubectl port-forward svc/elasticsearch-master -n logging 9200:9200
 }
 
 > curl localhost:9200/_cat/indices/
-green open svclb-traefik-2020.02.01          zeLquMhdS6eN71lRmnmt9w 1 1  50 0 135.9kb  60.9kb
-green open helm-2020.02.01                   K27msj3QTvSIOijM9KwUkA 1 1  55 0 924.5kb 552.6kb
-green open local-path-provisioner-2020.02.01 WJ3mvcEUSsyrp9suBNP_uQ 1 1  41 0  93.2kb  53.1kb
-green open kube-2020.02.01                   2G2-qNhbTvSA0FHnbZFb9w 1 1 177 0 216.9kb 102.1kb
+green open foo-far-2020.02.01
 ```
 
 
-## Kibana
+### Kibana
 
 ```
 kubectl port-forward svc/kibana-kibana -n logging 8088:5601
@@ -169,3 +167,37 @@ kubectl port-forward svc/kibana-kibana -n logging 8088:5601
 ```
 open http://localhost:8088
 ```
+
+Create index patterns.
+
+
+## Message Broker
+
+### Kafka
+
+### Metrics
+
+    Kafka Minion
+    
+  
+
+## Data Pipeline
+
+### HTTP Ingestor
+    
+    HTTP -> Kafka
+
+### Kafka to Storage
+
+    Kafka -> Storage
+    
+
+## Custom metrics
+
+### Consumer group offset lag
+
+
+## Autoscale Kafka to Storage
+
+
+
