@@ -4,8 +4,7 @@ metadata:
   name: fluentd
   namespace: logging
   annotations:
-    flux.weave.works/automated: "true"
-    flux.weave.works/tag.chart-image: semver:~2.3
+    flux.weave.works/automated: "false"
 spec:
   releaseName: fluent
   chart:

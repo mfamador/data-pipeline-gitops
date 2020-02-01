@@ -4,8 +4,7 @@ metadata:
   name: elasticsearch-curator
   namespace: logging
   annotations:
-    flux.weave.works/automated: "true"
-    flux.weave.works/tag.chart-image: semver:~2.1
+    flux.weave.works/automated: "false"
 spec:
   releaseName: elasticsearch-curator
   chart:

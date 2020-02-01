@@ -1,19 +1,18 @@
 apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:
-  name: sealed-secrets
-  namespace: secrets
+  name: external-dns
+  namespace: monitoring
   annotations:
     flux.weave.works/automated: "false"
 spec:
-  releaseName: sealed-secrets
+  releaseName: external-dns
   chart:
     repository: https://kubernetes-charts.storage.googleapis.com/
-    name: sealed-secrets
-    version: 1.7.1
+    name: external-dns
+    version: 2.15.3
   values:
-    networkPolicy:
-      true
-    crd:
-      create: true
-      keep: true
+    aws:
+      region: eu-west-1
+
+

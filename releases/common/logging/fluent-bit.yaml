@@ -4,8 +4,7 @@ metadata:
   name: fluent-bit
   namespace: logging
   annotations:
-    flux.weave.works/automated: "true"
-    flux.weave.works/tag.chart-image: semver:~2.8
+    flux.weave.works/automated: "false"
 spec:
   releaseName: fluent-bit
   chart:

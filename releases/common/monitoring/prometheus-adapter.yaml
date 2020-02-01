@@ -4,8 +4,7 @@ metadata:
   name: prometheus-adapter
   namespace: monitoring
   annotations:
-    flux.weave.works/automated: "true"
-    flux.weave.works/tag.chart-image: semver:~2.0
+    flux.weave.works/automated: "false"
 spec:
   releaseName: prometheus-adapter
   chart:

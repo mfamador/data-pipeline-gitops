@@ -4,8 +4,7 @@ metadata:
   name: metrics-server
   namespace: metrics
   annotations:
-    flux.weave.works/automated: "true"
-    flux.weave.works/tag.chart-image: semver:~2.9
+    flux.weave.works/automated: "false"
 spec:
   releaseName: metrics-server
   chart:

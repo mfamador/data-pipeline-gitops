@@ -4,8 +4,7 @@ metadata:
   name: prometheus-operator
   namespace: monitoring
   annotations:
-    flux.weave.works/automated: "true"
-    flux.weave.works/tag.chart-image: semver:~8.7
+    flux.weave.works/automated: "false"
 spec:
   releaseName: prometheus-operator
   chart:
