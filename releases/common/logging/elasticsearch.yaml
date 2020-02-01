@@ -1,7 +1,7 @@
 apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:
-  name: elasticsearc
+  name: elasticsearch
   namespace: logging
   annotations:
     flux.weave.works/automated: "true"
