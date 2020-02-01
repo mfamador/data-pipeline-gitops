@@ -36,55 +36,6 @@ spec:
       value: "true"
     configMaps:
       output.conf: |
-        <match kube.var.log.containers.helm*.log>
-          @type null
-        </match>
-        <match kube.var.log.containers.fluent*.log>
-          @type null
-        </match>
-        <match kube.var.log.containers.flux*.log>
-          @type null
-        </match>
-        <match kube.var.log.containers.prometheus*.log>
-          @type null
-        </match>
-        <match kube.var.log.containers.metrics*.log>
-          @type null
-        </match>
-        <match kube.var.log.containers.weave-net*.log>
-          @type null
-        </match>
-        <match kube.var.log.containers.soubrette*.log>
-          @type null
-        </match>
-        <match kube.var.log.containers.grafana*.log>
-          @type null
-        </match>
-        <match kube.var.log.containers.echo*.log>
-          @type null
-        </match>
-        <match kube.var.log.containers.cainjector*.log>
-          @type null
-        </match>
-        <match kube.var.log.containers.elasticsearch*.log>
-          @type null
-        </match>
-        <match kube.var.log.containers.alertmanager*.log>
-          @type null
-        </match>
-        <match kube.var.log.containers.concourse*.log>
-          @type null
-        </match>
-        <match kube.var.log.containers.postgresql*.log>
-          @type null
-        </match>
-        <match kube.var.log.containers.verdaccio*.log>
-          @type null
-        </match>
-        <match kube.var.log.containers.cert-manager*.log>
-          @type null
-        </match>
-
         <match kube.var.log.containers.benthos*.log>
           @id elasticsearch_dynamic_benthos
           @type elasticsearch_dynamic
