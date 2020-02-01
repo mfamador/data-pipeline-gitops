@@ -1,13 +1,13 @@
 apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:
-  name: fluentd
+  name: elasticsearc
   namespace: logging
   annotations:
     flux.weave.works/automated: "true"
     flux.weave.works/tag.chart-image: semver:~7.5
 spec:
-  releaseName: fluent
+  releaseName: elasticsearc
   chart:
     repository: https://helm.elastic.co/
     name: elasticsearch
