@@ -14,13 +14,12 @@ spec:
   values:
     numPartitions: 3
     persistence:
-      enabled: false
+      enabled: true
     metrics:
-      ## Prometheus Kafka Exporter: exposes complimentary metrics to JMX Exporter
       kafka:
         enabled: true
       jmx:
         enabled: true
       serviceMonitor:
-        enabled: false
+        enabled: true
 
