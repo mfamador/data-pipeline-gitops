@@ -4,7 +4,8 @@ metadata:
   name: prometheus-adapter
   namespace: monitoring
   annotations:
-    flux.weave.works/automated: "false"
+    flux.weave.works/automated: "true"
+    flux.weave.works/tag.chart-image: semver:~2.0
 spec:
   releaseName: prometheus-adapter
   chart:
@@ -13,5 +14,5 @@ spec:
     version: 2.0.1
   values:
     prometheus:
-      url: prometheus-operator
-      port: 80
+      url: prometheus-operator-prometheus
+      port: 9090
