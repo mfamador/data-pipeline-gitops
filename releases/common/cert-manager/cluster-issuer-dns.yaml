@@ -5,7 +5,7 @@ metadata:
   namespace: cert-manager
 spec:
   acme:
-    email: cloud@veniam.com
+    email: issuer@domain.com
     solvers:
     - dns01:
         route53:
