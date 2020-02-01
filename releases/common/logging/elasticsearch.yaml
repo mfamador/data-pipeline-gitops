@@ -13,5 +13,5 @@ spec:
     name: elasticsearch
     version: 7.5.2
   values:
-    replicas: 1
+    replicas: 2
     minimumMasterNodes: 1
