@@ -10,7 +10,7 @@ Install k3d
 brea install k3d
 ```
 
-Create a k8s cluster with 2 node
+Create a k8s cluster with 2 node and expose 8080 for Traefik ingress controller
 ```
 k3d create --publish 8080:80 --workers 2
 export KUBECONFIG="$(k3d get-kubeconfig --name='k3s-default')"
@@ -49,7 +49,7 @@ helm install --name flux \
 --set rbac.create=true \
 --set git.url=git@github.com:mfamador/data-pipeline-gitops.git \
 --set git.branch=master \
---set git.path="releases" \
+--set git.path=releases \
 --namespace flux fluxcd/flux 
 
 fluxctl identity --k8s-fwd-ns flux
@@ -69,22 +69,18 @@ helm install --name helm-operator \
 
 ### Updating only a few parameters
 
-If we need to change just some parameters:
+If we need to change just a few parameters:
 
 ```
 helm upgrade --reuse-values flux \
 --set git.url=git@github.com:mfamador/data-pipeline-gitops.git \
+--set git.path=releases \
 --set git.branch=master \
 fluxcd/flux
 
-helm upgrade --reuse-values helm-operator --set workers=4 fluxcd/helm-operator 
-
-```
-
-### Test
-
-```
-curl -H "host:echo.domain.com" http://localhost:8080/
+helm upgrade --reuse-values helm-operator \
+--set workers=4 \
+fluxcd/helm-operator 
 ```
 
 ### Monitor cluster
@@ -92,4 +88,10 @@ curl -H "host:echo.domain.com" http://localhost:8080/
 A really nice tools to monitor our workloads running on k8s
 ```
 brew install derailed/k9s/k9s
+```
+
+### Test
+
+```
+curl -H "host:echo.domain.com" http://localhost:8080/
 ```
