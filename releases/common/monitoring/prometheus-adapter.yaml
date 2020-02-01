@@ -1,0 +1,17 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: prometheus-adapter
+  namespace: monitoring
+  annotations:
+    flux.weave.works/automated: "false"
+spec:
+  releaseName: prometheus-adapter
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com/
+    name: prometheus-adapter
+    version: 2.0.1
+  values:
+    prometheus:
+      url: prometheus-operator
+      port: 80

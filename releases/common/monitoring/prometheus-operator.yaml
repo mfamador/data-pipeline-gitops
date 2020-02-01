@@ -1,0 +1,24 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: prometheus-operator
+  namespace: monitoring
+  annotations:
+    flux.weave.works/automated: "true"
+    flux.weave.works/tag.chart-image: semver:~8.5
+spec:
+  releaseName: prometheus-operator
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com/
+    name: prometheus-operator
+    version: 8.5.15
+  values:
+    grafana:
+      enabled: true
+    prometheus:
+      ingress:
+        enabled: true
+        hosts:
+        - prometheus.domain.com
+    prometheusOperator:
+      createCustomResource: true
