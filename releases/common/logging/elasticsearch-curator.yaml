@@ -41,5 +41,5 @@ spec:
         ---
         client:
           hosts:
-            - elasticsearch
-          port: 80
+            - elasticsearch-master
+          port: 9200

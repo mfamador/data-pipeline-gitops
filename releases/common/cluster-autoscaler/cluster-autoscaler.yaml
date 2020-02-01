@@ -1,0 +1,27 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: cluster-autoscaler
+  namespace: kube-system
+  annotations:
+    flux.weave.works/automated: "false"
+spec:
+  releaseName: aws-cluster-autoscaler
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com/
+    name: cluster-autoscaler
+    version: 6.3.0
+  values:
+    autoDiscovery:
+      clusterName: k3s-default
+    extraArgs:
+      balance-similar-node-groups: true
+      skip-nodes-with-system-pods: false
+    rbac:
+      create: true
+    serviceMonitor:
+      enabled: true
+      namespace: kube-system
+      selector:
+        release: prometheus-operator
+        prometheus: kube-prometheus
