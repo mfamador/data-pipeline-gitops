@@ -1,0 +1,26 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: kafka
+  namespace: messaging
+  annotations:
+    flux.weave.works/automated: "false"
+spec:
+  releaseName: kafka
+  chart:
+    repository: https://charts.bitnami.com/bitnami
+    name: kafka
+    version: 7.2.0
+  values:
+    numPartitions: 3
+    persistence:
+      enabled: false
+    metrics:
+      ## Prometheus Kafka Exporter: exposes complimentary metrics to JMX Exporter
+      kafka:
+        enabled: true
+      jmx:
+        enabled: true
+      serviceMonitor:
+        enabled: false
+
