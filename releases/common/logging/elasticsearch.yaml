@@ -12,3 +12,6 @@ spec:
     repository: https://helm.elastic.co/
     name: elasticsearch
     version: 7.5.2
+  values:
+    replicas: 1
+    minimumMasterNodes: 1

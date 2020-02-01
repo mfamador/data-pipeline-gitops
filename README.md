@@ -12,7 +12,7 @@ brea install k3d
 
 Create a k8s cluster with 2 node and expose 8080 for Traefik ingress controller
 ```
-k3d create --publish 8080:80 --workers 2
+k3d create --publish 8080:80 --workers 6
 export KUBECONFIG="$(k3d get-kubeconfig --name='k3s-default')"
 ```
 
@@ -129,5 +129,14 @@ open http://localhost:8080
 ## Elasticsearch
 
 ```
+```
+
+```
+kubectl port-forward svc/elasticsearch-master -n logging 9200:9200
+```
+
+```
+> curl http://localhost:9200
+
 
 ```
