@@ -95,3 +95,33 @@ brew install derailed/k9s/k9s
 ```
 curl -H "host:echo.domain.com" http://localhost:8080/
 ```
+
+## Monitoring
+
+### Prometheus
+
+```
+kubectl port-forward svc/prometheus-operator-prometheus -n monitoring 9090:9090
+```
+
+```
+open http://localhost:9090
+```
+
+### Grafana
+
+Username `admin` and password is store in a secret base64 encoded
+```
+kubectl get secret prometheus-operator-grafana -o yaml -n monitoring
+
+echo <ADMIN-PASSWORD> | base64 --decode
+```
+
+```
+kubectl port-forward svc/prometheus-operator-grafana -n monitoring 8080:80
+```
+
+```
+open http://localhost:8080
+```
+
