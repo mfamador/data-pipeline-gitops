@@ -129,14 +129,43 @@ open http://localhost:8080
 ## Elasticsearch
 
 ```
-```
-
-```
 kubectl port-forward svc/elasticsearch-master -n logging 9200:9200
 ```
 
 ```
 > curl http://localhost:9200
+{
+  "name" : "elasticsearch-master-0",
+  "cluster_name" : "elasticsearch",
+  "cluster_uuid" : "_na_",
+  "version" : {
+    "number" : "7.5.2",
+    "build_flavor" : "default",
+    "build_type" : "docker",
+    "build_hash" : "8bec50e1e0ad29dad5653712cf3bb580cd1afcdf",
+    "build_date" : "2020-01-15T12:11:52.313576Z",
+    "build_snapshot" : false,
+    "lucene_version" : "8.3.0",
+    "minimum_wire_compatibility_version" : "6.8.0",
+    "minimum_index_compatibility_version" : "6.0.0-beta1"
+  },
+  "tagline" : "You Know, for Search"
+}
+
+> curl localhost:9200/_cat/indices/
+green open svclb-traefik-2020.02.01          zeLquMhdS6eN71lRmnmt9w 1 1  50 0 135.9kb  60.9kb
+green open helm-2020.02.01                   K27msj3QTvSIOijM9KwUkA 1 1  55 0 924.5kb 552.6kb
+green open local-path-provisioner-2020.02.01 WJ3mvcEUSsyrp9suBNP_uQ 1 1  41 0  93.2kb  53.1kb
+green open kube-2020.02.01                   2G2-qNhbTvSA0FHnbZFb9w 1 1 177 0 216.9kb 102.1kb
+```
 
 
+## Kibana
+
+```
+kubectl port-forward svc/kibana-kibana -n logging 8088:5601
+```
+
+```
+open http://localhost:8088
 ```
