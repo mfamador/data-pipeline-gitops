@@ -125,3 +125,8 @@ kubectl port-forward svc/prometheus-operator-grafana -n monitoring 8080:80
 open http://localhost:8080
 ```
 
+## Elasticsearch
+
+```
+
+```
