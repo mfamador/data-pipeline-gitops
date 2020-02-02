@@ -36,6 +36,10 @@ spec:
             gnetId: 10466
             revision: 2
             datasource: Prometheus
+          kafka-exporter:
+            gnetId: 7589
+            revision: 5
+            datasource: Prometheus
       plugins:
       - raintank-worldping-app
       - grafana-worldmap-panel

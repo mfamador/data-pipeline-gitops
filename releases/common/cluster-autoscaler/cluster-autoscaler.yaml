@@ -10,10 +10,8 @@ spec:
   chart:
     repository: https://kubernetes-charts.storage.googleapis.com/
     name: cluster-autoscaler
-    version: 6.3.0
+    version: 6.4.0
   values:
-    autoDiscovery:
-      clusterName: k3s-default
     extraArgs:
       balance-similar-node-groups: true
       skip-nodes-with-system-pods: false

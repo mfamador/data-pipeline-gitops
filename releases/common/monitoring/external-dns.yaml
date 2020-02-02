@@ -10,9 +10,4 @@ spec:
   chart:
     repository: https://kubernetes-charts.storage.googleapis.com/
     name: external-dns
-    version: 2.15.3
-  values:
-    aws:
-      region: eu-west-1
-
-
+    version: 2.16.1
