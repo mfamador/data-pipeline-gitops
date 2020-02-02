@@ -1,9 +1,5 @@
 input:
-  http_server:
-    address: ""
-    path: /
-    timeout: 5s
-    rate_limit: ""
+  type: http_server
 
 pipeline:
   processors:
@@ -13,6 +9,7 @@ pipeline:
       message: ""
 
 output:
+  type: kafka
   kafka:
     addresses:
     - kafka.kafka:9092
