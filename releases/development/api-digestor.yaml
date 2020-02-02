@@ -1,0 +1,20 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: api-ingestor
+  namespace: dev
+  annotations:
+    flux.weave.works/automated: "true"
+    flux.weave.works/tag.chart-image: semver:~1
+spec:
+  chart:
+    git: git@github.com:mfamador/data-pipeline-gitops
+    path: charts/application
+    ref: master
+  values:
+    image:
+      repository: marcoamador/digestor
+      tag: 1.0.0
+      pullPolicy: Always
+    replicaCount: 1

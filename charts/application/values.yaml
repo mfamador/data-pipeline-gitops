@@ -40,20 +40,6 @@ servicePort: http
 
 ingress:
   enabled: false
-  class: kong
-  annotations: {}
-  hosts:
-  - host: example1.local
-    paths: ["/v2/api"]
-  - host: example2.local
-    paths: ["/v1/api"]
-  rewrite: ""
-  tls:
-    enabled: false
-
-ingressApicell:
-  enabled: false
-  class: kong-apicell
   annotations: {}
   hosts:
   - host: example1.local
