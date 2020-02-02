@@ -11,7 +11,7 @@ nameOverride: ""
 fullnameOverride: ""
 
 deployment:
-  containerPort: 8000
+  containerPort: 4195
   antiaffinity:
     enabled: false
 
@@ -27,7 +27,7 @@ readinessProbe:
 
 ports:
 - name: http
-  containerPort: 8000
+  containerPort: 4195
   protocol: TCP
 
 service:
