@@ -6,7 +6,7 @@ metadata:
   annotations:
     flux.weave.works/automated: "false"
 spec:
-  releaseName: elasticsearc
+  releaseName: elasticsearch
   chart:
     repository: https://helm.elastic.co/
     name: elasticsearch
