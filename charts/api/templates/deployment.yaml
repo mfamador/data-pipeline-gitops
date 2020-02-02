@@ -64,15 +64,15 @@ spec:
           {{- if .Values.livenessProbe }}
           livenessProbe:
             httpGet:
-              path: {{ default "/healthz" .Values.livenessProbe.path }}
-              port: {{ default "http" .Values.livenessProbe.port }}
+              path: {{ default "/healthz" .Values.livenessProbe.httpGet.path }}
+              port: {{ default "http" .Values.livenessProbe.httpGet.port }}
             initialDelaySeconds: {{ default 0 .Values.livenessProbe.initialDelaySeconds }}
           {{- end }}
           {{- if .Values.readinessProbe }}
           readinessProbe:
             httpGet:
-              path: {{ default "/healthz" .Values.readinessProbe.path }}
-              port: {{ default "http" .Values.readinessProbe.port }}
+              path: {{ default "/healthz" .Values.readinessProbe.httpGet.path }}
+              port: {{ default "http" .Values.readinessProbe.httpGet.port }}
             initialDelaySeconds: {{ default 0 .Values.livenessProbe.initialDelaySeconds }}
           {{- end }}
           resources: {{- toYaml .Values.resources | nindent 12 }}
