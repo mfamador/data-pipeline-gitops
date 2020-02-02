@@ -19,6 +19,7 @@ spec:
         hosts:
         - grafana.domain.com
       dashboards:
+        default:
           prometheus-stats:
             gnetId: 2
             revision: 2
