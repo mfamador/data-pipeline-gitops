@@ -1,0 +1,19 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: kafka-minion
+  namespace: monitoring
+  annotations:
+    flux.weave.works/automated: "false"
+spec:
+  releaseName: kafka-minion
+  chart:
+    repository: https://raw.githubusercontent.com/cloudworkz/kafka-minion-helm-chart/master
+    name: kafka-minion
+    version: 1.1.2
+  values:
+    kafka:
+      brokers: kafka.kafka:9092
+    serviceMonitor:
+      create: true
+    logLevel: info

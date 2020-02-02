@@ -18,6 +18,40 @@ spec:
         enabled: true
         hosts:
         - grafana.domain.com
+      dashboards:
+          prometheus-stats:
+            gnetId: 2
+            revision: 2
+            datasource: Prometheus
+          node-exporter:
+            gnetId: 11074
+            revision: 2
+            datasource: Prometheus
+          kafka-minion:
+            gnetId: 11074
+            revision: 3
+            datasource: Prometheus
+          kafka-minion-ops:
+            gnetId: 11074
+            revision: 2
+            datasource: Prometheus
+      plugins:
+      - raintank-worldping-app
+      - grafana-worldmap-panel
+      - grafana-clock-panel
+      - grafana-piechart-panel
+      - ryantxu-ajax-panel
+      - farski-blendstat-panel
+      - briangann-gauge-panel
+      - grafana-kubernetes-app
+      - novalabs-annotations-panel
+      - jdbranham-diagram-panel
+      - digrich-bubblechart-panel
+      - simpod-json-datasource
+      - snuids-radar-panel
+      - grafana-sensu-app
+      - mxswat-separator-panel
+      - snuids-trafficlights-panel
     prometheus:
       ingress:
         enabled: true

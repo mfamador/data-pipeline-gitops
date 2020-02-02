@@ -25,8 +25,11 @@ k3d add-node
 
 ```
 kubectl create serviceaccount -n kube-system tiller
+
 kubectl create clusterrolebinding tiller-cluster-admin --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
+
 helm init --service-account tiller --tiller-namespace kube-system
+
 helm list
 ```
 
@@ -47,6 +50,7 @@ kubectl apply -f https://raw.githubusercontent.com/fluxcd/helm-operator/master/d
 ### Install Flux
 ```
 export TILLER_NAMESPACE=kube-system
+
 export FLUX_FORWARD_NAMESPACE=flux
 
 helm install --name flux \
@@ -105,7 +109,6 @@ or if you added echo.domain.com to /etc/hosts
 ```
 curl http://echo.domain.com:8080
 ```
-
 
 ## Monitoring
 

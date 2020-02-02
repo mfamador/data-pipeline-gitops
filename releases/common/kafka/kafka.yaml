@@ -2,7 +2,7 @@ apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:
   name: kafka
-  namespace: messaging
+  namespace: kafka
   annotations:
     flux.weave.works/automated: "false"
 spec:
@@ -14,7 +14,16 @@ spec:
   values:
     numPartitions: 3
     persistence:
-      enabled: true
+      enabled: false
+    service:
+      type: NodePort
+      port: 9092
+    externalAccess:
+      enabled: false
+      service:
+        type: NodePort
+        port: 19092
+        domain: domain.com
     metrics:
       kafka:
         enabled: true
@@ -22,4 +31,6 @@ spec:
         enabled: true
       serviceMonitor:
         enabled: true
-
+    zookeeper:
+      persistence:
+        enabled: false
