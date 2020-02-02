@@ -16,14 +16,14 @@ deployment:
     enabled: false
 
 livenessProbe:
-  path: "/healthz"
-  port: http
-  initialDelaySeconds: 5
+  httpGet:
+    path: /ping
+    port: http
 
 readinessProbe:
-  path: "/healthz"
-  port: http
-  initialDelaySeconds: 5
+  httpGet:
+    path: /ready
+    port: http
 
 ports:
 - name: http
