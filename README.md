@@ -122,6 +122,11 @@ kubectl port-forward svc/prometheus-operator-prometheus -n monitoring 9090:9090
 open http://localhost:9090
 ```
 
+or using the ingress if you added prometheus.domain.com to /etc/hosts
+```
+open http://prometheus.domain.com:8080
+```
+
 ### Grafana
 
 Username `admin` and password is store in a secret base64 encoded
