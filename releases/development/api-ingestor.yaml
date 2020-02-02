@@ -10,11 +10,11 @@ metadata:
 spec:
   chart:
     git: git@github.com:mfamador/data-pipeline-gitops
-    path: charts/application
+    path: charts/api-ingestor
     ref: master
   values:
     image:
-      repository: marcoamador/ingestor
+      repository: marcoamador/pipeline-ingestor
       tag: 1.0.0
       pullPolicy: Always
     replicaCount: 1
@@ -24,3 +24,6 @@ spec:
       hosts:
       - host: "ingestor.domain.com"
         paths: ["/"]
+    env:
+    - name: KAFKA_BROKERS
+      value: kafka.kafka:9092
