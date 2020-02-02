@@ -1,26 +1,25 @@
 input:
-  broker:
-    inputs:
-    - kafka_balanced:
-        addresses:
-        - ${KAFKA_BROKERS}
-        client_id: ${CLIENT_ID}
-        consumer_group: ${CONSUMER_GROUP}
-        topics:
-        - embedded_events.file_transfer.upload.request.1_0
+  http_server:
+    address: ""
+    path: /post
+    ws_path: /post/ws
+    timeout: 5s
+    rate_limit: ""
 
 pipeline:
   processors:
-  - for_each:
-    - type: process_map
-      process_map:
-        processors:
-        - cache:
-            operator: get
-            cache: metadata_cache
-            key: "${!json_field:node_id}"
-        postmap:
-          cluster_id: cluster_id
+  - log:
+      level: INFO
+      fields: {}
+      message: ""
 
 output:
-  type: drop
+  kafka:
+    addresses:
+    - kafka.kafka:9092
+    topic: ingestor_stream
+    client_id: ingestor_kafka_output
+    batching:
+      count: 1
+      byte_size: 0
+      period: ""
