@@ -31,6 +31,9 @@ spec:
         enabled: true
       serviceMonitor:
         enabled: true
+        namespace: monitoring
+        selector:
+          release: prometheus-operator
     zookeeper:
       persistence:
         enabled: false
