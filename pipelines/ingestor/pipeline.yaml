@@ -1,8 +1,7 @@
 input:
   http_server:
     address: ""
-    path: /post
-    ws_path: /post/ws
+    path: /
     timeout: 5s
     rate_limit: ""
 
