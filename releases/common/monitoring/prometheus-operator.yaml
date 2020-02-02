@@ -29,11 +29,11 @@ spec:
             revision: 2
             datasource: Prometheus
           kafka-minion:
-            gnetId: 11074
+            gnetId: 10083
             revision: 3
             datasource: Prometheus
           kafka-minion-ops:
-            gnetId: 11074
+            gnetId: 10466
             revision: 2
             datasource: Prometheus
       plugins:
