@@ -1,0 +1,26 @@
+input:
+  broker:
+    inputs:
+    - kafka_balanced:
+        addresses:
+        - ${KAFKA_BROKERS}
+        client_id: ${CLIENT_ID}
+        consumer_group: ${CONSUMER_GROUP}
+        topics:
+        - embedded_events.file_transfer.upload.request.1_0
+
+pipeline:
+  processors:
+  - for_each:
+    - type: process_map
+      process_map:
+        processors:
+        - cache:
+            operator: get
+            cache: metadata_cache
+            key: "${!json_field:node_id}"
+        postmap:
+          cluster_id: cluster_id
+
+output:
+  type: drop
