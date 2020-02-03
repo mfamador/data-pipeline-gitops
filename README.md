@@ -81,7 +81,7 @@ If we need to change just a few parameters:
 
 ```
 helm upgrade --reuse-values flux \
---set git.path="releases/development\,releases/common/kafka" \
+--set git.path="releases/development\,releases/common/" \
 --set git.branch=master \
 fluxcd/flux
 
