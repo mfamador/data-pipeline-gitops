@@ -11,16 +11,12 @@ input:
 
 pipeline:
   processors:
-  - for_each:
-    - type: process_map
-      process_map:
-        processors:
-        - cache:
-            operator: get
-            cache: metadata_cache
-            key: "${!json_field:node_id}"
-        postmap:
-          cluster_id: cluster_id
+  - log:
+      level: INFO
+      fields: {}
+      message: ""
 
 output:
   type: drop
+
+

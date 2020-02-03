@@ -2,4 +2,4 @@ FROM jeffail/benthos:3.9.0
 
 ARG dir
 
-COPY $dir/pipeline.yaml /
+COPY $dir/benthos.yaml /
