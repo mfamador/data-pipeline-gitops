@@ -81,8 +81,7 @@ If we need to change just a few parameters:
 
 ```
 helm upgrade --reuse-values flux \
---set git.url=git@github.com:mfamador/data-pipeline-gitops.git \
---set git.path=releases \
+--set git.path="releases/development\,releases/common/kafka" \
 --set git.branch=master \
 fluxcd/flux
 
