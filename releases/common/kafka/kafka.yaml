@@ -13,7 +13,7 @@ spec:
     version: 7.2.0
   values:
     numPartitions: 3
-    socketRequestMaxBytes: 1104857600
+    socketRequestMaxBytes: "1104857600"
     metrics:
       kafka:
         enabled: true
@@ -23,6 +23,3 @@ spec:
         enabled: true
         selector:
           release: prometheus-operator
-    zookeeper:
-      persistence:
-        enabled: false
