@@ -40,6 +40,10 @@ spec:
             gnetId: 7589
             revision: 5
             datasource: Prometheus
+          concourse:
+            gnetId: 7036
+            revision: 2
+            datasource: Prometheus
       plugins:
       - raintank-worldping-app
       - grafana-worldmap-panel
