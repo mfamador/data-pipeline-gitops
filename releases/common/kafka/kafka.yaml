@@ -18,12 +18,6 @@ spec:
     service:
       type: NodePort
       port: 9092
-    externalAccess:
-      enabled: true
-      service:
-        type: NodePort
-        port: 19092
-        domain: domain.com
     socketRequestMaxBytes: 1104857600
     metrics:
       kafka:
