@@ -11,23 +11,23 @@ spec:
     repository: https://charts.bitnami.com/bitnami
     name: kafka
     version: 7.2.0
-  values:
-    numPartitions: 3
-    persistence:
-      enabled: false
-    service:
-      type: NodePort
-      port: 9092
-    socketRequestMaxBytes: "1104857600"
-    metrics:
-      kafka:
-        enabled: true
-      jmx:
-        enabled: true
-      serviceMonitor:
-        enabled: true
-        selector:
-          release: prometheus-operator
-    zookeeper:
-      persistence:
-        enabled: false
+#  values:
+#    numPartitions: 3
+#    persistence:
+#      enabled: false
+#    service:
+#      type: NodePort
+#      port: 9092
+#    socketRequestMaxBytes: "1104857600"
+#    metrics:
+#      kafka:
+#        enabled: true
+#      jmx:
+#        enabled: true
+#      serviceMonitor:
+#        enabled: true
+#        selector:
+#          release: prometheus-operator
+#    zookeeper:
+#      persistence:
+#        enabled: false
