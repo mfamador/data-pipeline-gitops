@@ -200,7 +200,7 @@ or using the ingress if you added kibana.domain.com to /etc/hosts
 open http://kibana.domain.com:8080
 ```
 
-Create some index patterns on Kinana. Los should be already showing up.
+Create some index patterns on Kibana. Logs should be already showing up.
 
 
 ## Message Broker
