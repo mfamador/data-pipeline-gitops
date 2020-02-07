@@ -1,4 +1,4 @@
-FROM jeffail/benthos:3.9.0
+FROM jeffail/benthos:3.10.0
 
 ARG dir
 
